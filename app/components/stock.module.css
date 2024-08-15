@@ -2,13 +2,22 @@
     border-bottom: 1px solid var(--grey);
     display: grid;
     align-items: center;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: 1fr 2fr 2fr 1fr;
     padding: 8px;
+    transition: all .15s;
+    cursor: pointer;
+}
+
+.wrapper:hover {
+    background-color: rgba(255, 255, 255, 0.05);
 }
 
 .column {
     border-left: 1px solid var(--grey);
     padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
 }
 
 .column:first-child {

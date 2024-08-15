@@ -9,15 +9,39 @@
 
 .section {
   position: relative;
-  overflow: hidden;
 }
 
 .sectionStocks {
+  overflow: hidden;
   overflow-y: scroll;
 }
 
 .sectionStocks::-webkit-scrollbar {
   display: none;
+}
+
+.sectionPortfolio:after {
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  width: 40px;
+  height: 40px;
+  content: '';
+  background-color: var(--base);
+  border-bottom: 1px solid var(--grey);
+  transform: rotate(-45deg);
+}
+
+.sectionStats:after {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  width: 40px;
+  height: 40px;
+  content: '';
+  background-color: var(--base);
+  border-bottom: 1px solid var(--grey);
+  transform: rotate(45deg);
 }
 
 @media (min-width: 768px) {
@@ -46,5 +70,6 @@
   .sectionTrade {
     grid-column: 1 / span 3;
     border-top: 1px solid var(--grey);
+    overflow: hidden;
   }
 }

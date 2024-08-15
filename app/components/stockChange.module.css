@@ -1,7 +1,11 @@
 .wrapper {
-    padding: 8px 16px;
-    border-radius: 16px;
+    padding: 4px 8px;
+    border-radius: 30px;
     background-color: var(--grey);
+    transition: background-color .15s;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
 }
 
 .negative {

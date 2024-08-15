@@ -1,7 +1,10 @@
 import styles from './stock.module.css'
 import useMarketStore from '../stores/marketStore'
 import { useMemo } from 'react'
+
 import StockChange from './stockChange'
+import StockPrice from './stockPrice'
+import StockImage from './stockImage'
 
 export default function Stock ({ stock, onOpen }) {
 
@@ -15,21 +18,20 @@ export default function Stock ({ stock, onOpen }) {
     }, [ transactions, stock ])
 
     return (
-        <div className={styles.wrapper} onClick={onOpen} onKeyUp={onOpen}>
+        <div className={styles.wrapper} onClick={onOpen}>
             <div className={ styles.column }>
+                <StockImage stockName={stock.name} size={24} />
                 { stock.name }
             </div>
             <div className={ styles.column }>
-                <span className="price">&#3647;{ stock.latest }</span>
-            </div>
-            <div className={ styles.column }>
+                Details:
+                <StockPrice price={stock.latest} />
                 <StockChange change={latestTransaction?.change} />
             </div>
             <div className={ styles.column }>
-                <span className="price">&#3647;{ 0 }</span>
-            </div>
-            <div className={ styles.column }>
-                -0%
+                Portfolio:
+                <StockPrice price={0} />
+                <StockChange change={0} />
             </div>
             <div className={ styles.column }>
                 <button>TRADE</button>

@@ -24,22 +24,21 @@ export default function Home() {
 					PORTFOLIO
 				</div>
 				<div className={clsx([ styles.section, styles.sectionStats ])}>
-					<News />
+					<News onOpenStock={setFocusedStock} />
 				</div>
 				<div className={clsx([ styles.section, styles.sectionStocks ])}>
 					{
-						stocks.map((stock) => <Stock stock={stock} key={stock.name} onOpen={() => setFocusedStock(stock)} />)
+						stocks.map((stock) => <Stock stock={stock} key={stock.name} onOpen={() => setFocusedStock(stock.name)} />)
 					}
 				</div>
 				<div className={clsx([ styles.section, styles.sectionTrade ])}>
-					TRADE
+					{
+						focusedStock &&
+						<StockInfo key={focusedStock} stockName={focusedStock} onClose={() => setFocusedStock(false)} />
+					}
 				</div>
 			</div>
 
-			{
-				focusedStock &&
-				<StockInfo stock={focusedStock} onClose={() => setFocusedStock(false)} />
-			}
 		</main>
 	)
 }

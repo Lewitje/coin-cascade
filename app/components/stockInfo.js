@@ -1,14 +1,18 @@
 import { useMemo, useState } from 'react'
 import useStore from '../stores/marketStore'
 import styles from './stockInfo.module.css'
+
 import StockChange from './stockChange'
+import StockPrice from './stockPrice'
+import StockImage from './stockImage'
+import StockBuySell from './stockBuySell'
 
 import { Chart } from 'react-charts'
 
-export default function StockInfo ({ stock, onClose }) {
-    const latest = useStore((state) => state.stocks.find((o) => o.name === stock.name ))
-    const transactions = useStore((state) => state.stockChanges.filter((o) => o.stock === stock.name))
-    const [ transactionAmount, setTransactionAmount ] = useState(50)
+export default function StockInfo ({ stockName, onClose }) {
+    const latest = useStore((state) => state.stocks.find((o) => o.name === stockName ))
+    const transactions = useStore((state) => state.stockChanges.filter((o) => o.stock === stockName))
+    const [ transactionAmount, setTransactionAmount ] = useState(30)
 
     const sortedTransactions = useMemo(() => {
         const sorted = transactions.sort((a, b) => a.date - b.date)
@@ -31,66 +35,70 @@ export default function StockInfo ({ stock, onClose }) {
       const secondaryAxes = useMemo(
         () => [
           {
-            getValue: datum => datum.price,
-            min: 0
+            getValue: datum => datum.price
           }
         ],
         []
       )
 
+    if (!latest) {
+        return
+    }
+
     return (
-        <div className={ styles.wrapper }>
-            <div className={styles.inner}>
-                <h1>
-                    { stock.name }
-                </h1>
-                <h2>
-                    { latest.latest }
-                </h2>
+        <div className={styles.inner}>
+            <StockImage stockName={latest.name} size={80} />
 
-                <button onClick={onClose}>
-                    Close
-                </button>
+            <div className={styles.info}>
+                <div>
+                    <h3>
+                        { latest.name }
+                    </h3>
 
-                <button onClick={() => setTransactionAmount(50)}>
-                    Last 50
-                </button>
+                    <h1 style={{ margin: '4px 0 8px' }}>
+                        <StockPrice price={latest.latest} />
+                    </h1>
 
-                <button onClick={() => setTransactionAmount(100)}>
-                    Last 100
-                </button>
+                    <div>
+                        <StockChange change={latestTransaction?.change} />
 
-                <button onClick={() => setTransactionAmount(500)}>
-                    Last 500
-                </button>
-
-                <StockChange change={latestTransaction?.change} />
-
-                <div className={styles.chartWrapper}>
-                    {
-                        transactions?.length &&
-                        <Chart
-                            options={{
-                                dark: true,
-                                primaryAxis,
-                                secondaryAxes,
-                                data: [
-                                    {
-                                        label: 'Price',
-                                        data: sortedTransactions
-                                    }
-                                ]
-                            }}
-                        />
-                    }
+                        <StockBuySell stockName={stockName} />
+                    </div>
                 </div>
 
+                {/* <button onClick={() => setTransactionAmount(7)}>
+                    7 days
+                </button>
+
+                <button onClick={() => setTransactionAmount(30)}>
+                    30 days
+                </button>
+
+                <button onClick={() => setTransactionAmount(90)}>
+                    90 days
+                </button>
+
+                <button onClick={() => setTransactionAmount(180)}>
+                    180 days
+                </button> */}
+            </div>
+
+            <div className={styles.chartWrapper}>
                 {
-                    sortedTransactions.map((o) => (
-                        <div key={o.date}>
-                            { o.date } | { o.price } | { o.change }
-                        </div>
-                    ))
+                    transactions?.length &&
+                    <Chart
+                        options={{
+                            dark: true,
+                            primaryAxis,
+                            secondaryAxes,
+                            data: [
+                                {
+                                    label: 'Price',
+                                    data: sortedTransactions
+                                }
+                            ]
+                        }}
+                    />
                 }
             </div>
         </div>

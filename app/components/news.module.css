@@ -1,0 +1,44 @@
+.wrapper {
+    padding: 16px;
+    cursor: pointer;
+}
+
+.message {
+    display: block;
+    font-size: 20px;
+    line-height: 1.5em;
+    margin: 8px 0;
+}
+
+.date {
+    color: var(--grey);
+}
+
+.liveWrapper {
+    background-color: var(--red);
+    padding: 10px 12px 8px;
+    border-radius: 30px;
+    color: white;
+    display: inline-flex;
+    align-items: baseline;
+    gap: 4px;
+    font-size: 10px;
+    line-height: 1em;
+}
+
+.liveIndicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    animation: live 1s infinite alternate;
+    background-color: white;
+}
+
+@keyframes live {
+    from {
+        opacity: 0.5;
+    }
+    to {
+        opacity: 1;
+    }
+}

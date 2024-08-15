@@ -1,24 +1,21 @@
 .wrapper {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: var(--base);
-    z-index: 9;
-    max-height: 100vh;
-    overflow-y: scroll;
-    display: flex;
-    justify-content: center;
+    
 }
 
 .inner {
-    flex: 1 1 100%;
-    width: 100%;
-    max-width: 800px;
+    display: grid;
+    grid-template-columns: 80px 1fr 50%;
+    align-items: center;
+    height: 100%;
+    gap: 16px;
+    padding-left: 24px;
 }
 
 .chartWrapper {
-    aspect-ratio: 3/2;
-    border: 1px solid var(--grey);
+    height: 100%;
+}
+
+.info {
+    display: grid;
+    gap: 8px;
 }

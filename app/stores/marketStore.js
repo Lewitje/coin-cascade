@@ -10,8 +10,8 @@ const useStore = create((set) => ({
     { name: 'HypnoCoin', price: 0.42, latest: 0.42 },
     { name: 'Wall-Eth', price: 0.00042, latest: 0.00042 },
     { name: 'EveBits', price: 0.76, latest: 0.76 },
-    { name: 'AstroBits', price: 0.094, latest: 0.094 },
-    { name: 'RobotRights', price: 0.0083, latest: 0.0083 },
+    { name: 'AstroBolts', price: 0.094, latest: 0.094 },
+    { name: 'OchanomizuCoin', price: 0.0083, latest: 0.0083 },
     { name: 'KoopaCoin', price: 0.00055, latest: 0.0055 },
     { name: 'YoshiYen', price: 0.89, latest: 0.89 },
     { name: 'KrustyCash', price: 1.44, latest: 1.44 },
@@ -24,8 +24,12 @@ const useStore = create((set) => ({
   stockChanges: [
 
   ],
+  activeBuff: false,
+  tick: 0,
   addStockChange: (transaction) => set((state) => ({ stockChanges: [ ...state.stockChanges, transaction ] })),
-  updateStocks: (newStocks) => set(() => ({ stocks: newStocks }))
+  updateStocks: (newStocks) => set(() => ({ stocks: newStocks })),
+  setActiveBuff: (newBuff) => set(() => ({ activeBuff: newBuff })),
+  increaseTick: () => set((state) => ({ tick: state.tick + 1 }))
 }))
 
 export default useStore

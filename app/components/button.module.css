@@ -1,0 +1,19 @@
+.button {
+    background-color: var(--grey);
+    color: white;
+    border: 0;
+    outline: 0;
+    box-shadow: 0;
+    font-size: 14px;
+    line-height: 1em;
+    border-radius: 40px;
+    padding: 8px 16px;
+    vertical-align: top;
+    cursor: pointer;
+    transition: all .1s;
+}
+
+.button:hover {
+    background-color: var(--yellow);
+    color: var(--base);
+}
