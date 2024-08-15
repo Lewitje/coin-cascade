@@ -1,0 +1,16 @@
+.wrapper {
+    border-bottom: 1px solid var(--grey);
+    display: grid;
+    align-items: center;
+    grid-template-columns: repeat(6, 1fr);
+    padding: 8px;
+}
+
+.column {
+    border-left: 1px solid var(--grey);
+    padding: 8px 16px;
+}
+
+.column:first-child {
+    border-left: 0;
+}

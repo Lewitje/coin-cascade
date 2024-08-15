@@ -1,0 +1,13 @@
+.wrapper {
+    padding: 8px 16px;
+    border-radius: 16px;
+    background-color: var(--grey);
+}
+
+.negative {
+    background-color: var(--red);
+}
+
+.positive {
+    background-color: var(--blue);
+}
