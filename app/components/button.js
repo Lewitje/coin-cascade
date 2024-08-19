@@ -1,8 +1,8 @@
 import styles from './button.module.css'
 
-export default function Button ({ label }) {
+export default function Button ({ label, onPress, disabled }) {
     return (
-        <button className={ styles.button }>
+        <button type="button" className={ styles.button } onClick={onPress} onKeyUp={onPress} disabled={disabled}>
             { label }
         </button>
     )

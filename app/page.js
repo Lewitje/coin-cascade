@@ -10,10 +10,13 @@ import useStockMarket from "./hooks/useStockMarket";
 import Stock from "./components/stock";
 import StockInfo from "./components/stockInfo";
 import News from "./components/news";
+import Portfolio from "./components/portfolio";
+import Filter from "./components/filter";
 
 export default function Home() {
-	const stocks = useMarketStore((state) => state.stocks)
 	const [ focusedStock, setFocusedStock ] = useState(false)
+	const [ filteredStocks, setFilteredStocks ] = useState([])
+	const stocks = useMarketStore((state) => state.stocks.filter((o) => filteredStocks.includes(o.name)))
 
 	useStockMarket()
 
@@ -21,12 +24,13 @@ export default function Home() {
 		<main className={styles.main}>
 			<div className={styles.wrapper}>
 				<div className={clsx([ styles.section, styles.sectionPortfolio ])}>
-					PORTFOLIO
+					<Portfolio />
 				</div>
 				<div className={clsx([ styles.section, styles.sectionStats ])}>
 					<News onOpenStock={setFocusedStock} />
 				</div>
 				<div className={clsx([ styles.section, styles.sectionStocks ])}>
+					<Filter onChange={(o) => setFilteredStocks(o)} />
 					{
 						stocks.map((stock) => <Stock stock={stock} key={stock.name} onOpen={() => setFocusedStock(stock.name)} />)
 					}

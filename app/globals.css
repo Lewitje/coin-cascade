@@ -42,3 +42,9 @@ body {
 .price {
   font-variant-numeric: tabular-nums;
 }
+
+hr {
+  border-color: var(--grey);
+  max-width: 50%;
+  margin: 32px auto;
+}

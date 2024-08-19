@@ -6,6 +6,7 @@ import StockChange from './stockChange'
 import StockPrice from './stockPrice'
 import StockImage from './stockImage'
 import StockBuySell from './stockBuySell'
+import Button from './button'
 
 import { Chart } from 'react-charts'
 
@@ -66,21 +67,12 @@ export default function StockInfo ({ stockName, onClose }) {
                     </div>
                 </div>
 
-                {/* <button onClick={() => setTransactionAmount(7)}>
-                    7 days
-                </button>
-
-                <button onClick={() => setTransactionAmount(30)}>
-                    30 days
-                </button>
-
-                <button onClick={() => setTransactionAmount(90)}>
-                    90 days
-                </button>
-
-                <button onClick={() => setTransactionAmount(180)}>
-                    180 days
-                </button> */}
+                <div>
+                    <Button label="7d" onPress={() => setTransactionAmount(7)} />
+                    <Button label="30d" onPress={() => setTransactionAmount(30)} />
+                    <Button label="90d" onPress={() => setTransactionAmount(90)} />
+                    <Button label="180d" onPress={() => setTransactionAmount(180)} />
+                </div>
             </div>
 
             <div className={styles.chartWrapper}>

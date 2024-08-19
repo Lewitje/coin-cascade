@@ -17,3 +17,8 @@
     background-color: var(--yellow);
     color: var(--base);
 }
+
+.button:disabled {
+    background-color: var(--grey);
+    color: var(--base);
+}

@@ -2,8 +2,8 @@
     border-bottom: 1px solid var(--grey);
     display: grid;
     align-items: center;
-    grid-template-columns: 1fr 2fr 2fr 1fr;
-    padding: 8px;
+    grid-template-columns: 200px 2fr 2fr;
+    padding: 4px;
     transition: all .15s;
     cursor: pointer;
 }

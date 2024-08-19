@@ -33,10 +33,6 @@ export default function useStockMarket () {
                 console.log('STOCK MODIFIER', stock.name, stock.modifier, startNumber)
             }
 
-            if (!hasModifier && Math.random() < 0.05) {
-                startNumber = startNumber * 10
-            }
-
             let change = Number(((startNumber + (20 * Math.random())) / 500).toFixed(3))
 
             if (!hasModifier && Math.random() < 0.2) {

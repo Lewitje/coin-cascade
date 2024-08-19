@@ -1,5 +1,6 @@
 import styles from './stock.module.css'
 import useMarketStore from '../stores/marketStore'
+import usePortfolioStore from '../stores/portfolioStore'
 import { useMemo } from 'react'
 
 import StockChange from './stockChange'
@@ -9,6 +10,7 @@ import StockImage from './stockImage'
 export default function Stock ({ stock, onOpen }) {
 
     const transactions = useMarketStore((state) => state.stockChanges)
+    const myStock = usePortfolioStore((state) => state.stocks.find((o) => o.stockName === stock.name))
 
     // console.log(transactions)
 
@@ -16,6 +18,14 @@ export default function Stock ({ stock, onOpen }) {
         const filtered = transactions.filter((o) => o.stock === stock.name)
         return filtered[filtered.length - 1]
     }, [ transactions, stock ])
+
+    const totalPortfolio = useMemo(() => {
+        if (!myStock) {
+            return 0
+        }
+
+        return myStock.shares * stock.latest
+    }, [ myStock, stock ])
 
     return (
         <div className={styles.wrapper} onClick={onOpen}>
@@ -30,11 +40,8 @@ export default function Stock ({ stock, onOpen }) {
             </div>
             <div className={ styles.column }>
                 Portfolio:
-                <StockPrice price={0} />
+                <StockPrice price={totalPortfolio} maxLength={2} />
                 <StockChange change={0} />
-            </div>
-            <div className={ styles.column }>
-                <button>TRADE</button>
             </div>
         </div>
     )

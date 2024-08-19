@@ -2,12 +2,14 @@ import { create } from 'zustand'
 
 const useStore = create((set) => ({
   transactions: [],
+  stocks: [],
   value: 0,
   cash: 10,
-  addTransaction: () => set((state) => ((newTransaction) => ({ transactions: [ ...state.transactions, newTransaction ] }))),
-  sell: () => set((state) => ((inc) => ({ value: state.value + inc }))),
-  setValue: () => set(() => ((val) => ({ value: val }))),
-  setCash: () => set(() => ((cash) => ({ cash: cash }))),
+  addTransaction: (newTransaction) => set((state) => ({ transactions: [ ...state.transactions, newTransaction ] })),
+  updateStocks: (newStocks) => set(() => ({ stocks: newStocks })),
+  sell: (inc) => set((state) => (() => ({ value: state.value + inc }))),
+  setValue: (val) => set(() => ({ value: val })),
+  setCash: (cash) => set(() => ({ cash: cash })),
 }))
 
 export default useStore
