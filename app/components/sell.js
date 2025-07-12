@@ -117,7 +117,7 @@ export default function Sell ({ stockName }) {
                 GAS { stock.gas }% = ${ gasFeeForTotal }
             </h3>
 
-            <input type="range" value={minTotal} min={minTotal} step={0.5} max={max} onChange={(e) => setTotal(Number(e.target.value))} value={total} />
+            <input type="range" min={minTotal} step={0.5} max={max} onChange={(e) => setTotal(Number(e.target.value))} value={total} />
 
             <Button label="MAX" onPress={() => setTotal(max)} />
 
